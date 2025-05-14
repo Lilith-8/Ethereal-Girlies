@@ -6,54 +6,76 @@
     <title>Ethereal Girlies - Skincare Quiz</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #fce7f3; /* Light pastel pink */
             color: #333;
             margin: 0;
             padding: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/polaroid.png');
+            background-repeat: repeat;
         }
         .container {
             width: 80%;
             margin: 20px auto;
             background-color: #fff;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            border: 5px solid #f8c6d1; /* Soft pink border */
+            background: linear-gradient(145deg, #ffaad4, #ff66b2); /* Pastel pink gradient */
+            position: relative;
+            overflow: hidden;
         }
         h1 {
             text-align: center;
             color: #800040;
+            font-size: 2.5em;
+            margin-bottom: 20px;
         }
         .quiz-form {
             display: flex;
             flex-direction: column;
+            margin-bottom: 20px;
         }
         .quiz-form label {
-            margin-bottom: 10px;
-            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            color: #ff66b2;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
         }
         .quiz-form input {
             margin-right: 10px;
-            transform: scale(1.2);
+            transform: scale(1.3);
         }
         .quiz-form button {
-            background-color: #800040;
+            background-color: #ff66b2;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             cursor: pointer;
             margin-top: 20px;
-            font-size: 1.1em;
+            font-size: 1.3em;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+        .quiz-form button:hover {
+            background-color: #ff3385;
         }
         #result-section {
             display: none;
             text-align: center;
             margin-top: 30px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         #result-section p {
-            font-size: 1.2em;
+            font-size: 1.5em;
             color: #800040;
+            font-weight: bold;
         }
         #product-recommendations {
             font-size: 1.1em;
@@ -65,20 +87,42 @@
             padding: 0;
         }
         #product-recommendations li {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
         }
         #product-recommendations a {
-            color: #800040;
+            color: #ff66b2;
             text-decoration: none;
         }
         #product-recommendations a:hover {
             text-decoration: underline;
+            color: #ff3385;
+        }
+        .glitter {
+            color: #ff66b2;
+            font-size: 3em;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: glitter 1.5s infinite alternate;
+        }
+        @keyframes glitter {
+            0% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateX(-50%) scale(1.1);
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Skincare Quiz</h1>
+        <div class="glitter">✨💖</div>
         
         <div id="quiz-section">
             <form id="quiz-form" class="quiz-form">
@@ -168,9 +212,4 @@
         // Retake the quiz
         function retakeQuiz() {
             document.getElementById("quiz-form").style.display = "block";
-            document.getElementById("result-section").style.display = "none";
-            document.getElementById("quiz-form").reset(); // Reset form selection
-        }
-    </script>
-</body>
-</html>
+            document.getElementById("result-section").style.display = "
