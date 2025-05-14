@@ -1,215 +1,199 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethereal Girlies - Skincare Quiz</title>
-    <style>
-        body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background-color: #fce7f3; /* Light pastel pink */
-            color: #333;
-            margin: 0;
-            padding: 0;
-            background-image: url('https://www.transparenttextures.com/patterns/polaroid.png');
-            background-repeat: repeat;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            border: 5px solid #f8c6d1; /* Soft pink border */
-            background: linear-gradient(145deg, #ffaad4, #ff66b2); /* Pastel pink gradient */
-            position: relative;
-            overflow: hidden;
-        }
-        h1 {
-            text-align: center;
-            color: #800040;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        .quiz-form {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
-        }
-        .quiz-form label {
-            margin-bottom: 15px;
-            font-size: 1.4em;
-            color: #ff66b2;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        .quiz-form input {
-            margin-right: 10px;
-            transform: scale(1.3);
-        }
-        .quiz-form button {
-            background-color: #ff66b2;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            margin-top: 20px;
-            font-size: 1.3em;
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
-        }
-        .quiz-form button:hover {
-            background-color: #ff3385;
-        }
-        #result-section {
-            display: none;
-            text-align: center;
-            margin-top: 30px;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        #result-section p {
-            font-size: 1.5em;
-            color: #800040;
-            font-weight: bold;
-        }
-        #product-recommendations {
-            font-size: 1.1em;
-            color: #800040;
-            margin-top: 20px;
-        }
-        #product-recommendations ul {
-            list-style: none;
-            padding: 0;
-        }
-        #product-recommendations li {
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-        #product-recommendations a {
-            color: #ff66b2;
-            text-decoration: none;
-        }
-        #product-recommendations a:hover {
-            text-decoration: underline;
-            color: #ff3385;
-        }
-        .glitter {
-            color: #ff66b2;
-            font-size: 3em;
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: glitter 1.5s infinite alternate;
-        }
-        @keyframes glitter {
-            0% {
-                transform: translateX(-50%) scale(1);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateX(-50%) scale(1.1);
-                opacity: 1;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ethereal Girlies - Skincare Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      color: #d8b4dd;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5em;
+    }
+    .question {
+      margin-bottom: 25px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #555;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      background-color: #fcdde9;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+    }
+    button {
+      background-color: #f9c6d0;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 20px;
+      font-size: 1em;
+      color: white;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+    button:hover {
+      background-color: #f7b4c2;
+    }
+    .results-section {
+      margin-top: 30px;
+      font-size: 1em;
+    }
+    .results-section ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .results-section li {
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Skincare Quiz</h1>
-        <div class="glitter">✨💖</div>
-        
-        <div id="quiz-section">
-            <form id="quiz-form" class="quiz-form">
-                <label>
-                    <input type="radio" name="skin-type" value="oily" required> Oily
-                </label>
-                <label>
-                    <input type="radio" name="skin-type" value="dry"> Dry
-                </label>
-                <label>
-                    <input type="radio" name="skin-type" value="combination"> Combination
-                </label>
-                <label>
-                    <input type="radio" name="skin-type" value="sensitive"> Sensitive
-                </label>
-                <button type="submit">Get Results</button>
-            </form>
-        </div>
-        
-        <div id="result-section">
-            <p id="result-text"></p>
-            <div id="product-recommendations">
-                <!-- Product links will be dynamically added here -->
-            </div>
-            <button onclick="retakeQuiz()">Retake Quiz</button>
-        </div>
-    </div>
+  <div class="container">
+    <h1>Ethereal Girlies Skin Quiz</h1>
+    <form id="skinQuiz">
+      <div class="question">
+        <label>1. What's your skin type?</label>
+        <select id="skinType">
+          <option value="Oily">Oily</option>
+          <option value="Dry">Dry</option>
+          <option value="Combination">Combination</option>
+          <option value="Normal">Normal</option>
+          <option value="Sensitive">Sensitive</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>2. What's your primary skin concern?</label>
+        <select id="skinConcern">
+          <option value="Acne">Acne</option>
+          <option value="Dullness">Dullness</option>
+          <option value="Dark Spots">Dark Spots</option>
+          <option value="Aging">Aging</option>
+          <option value="Redness">Redness</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>3. How often do you use skincare products?</label>
+        <select id="routineFreq">
+          <option>Daily</option>
+          <option>Sometimes</option>
+          <option>Rarely</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>4. Do you prefer natural or chemical-free products?</label>
+        <select id="naturalPref">
+          <option>Yes</option>
+          <option>No</option>
+          <option>Doesn't matter</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>5. Do you wear makeup daily?</label>
+        <select id="makeupDaily">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </div>
+      <button type="submit">Show My Routine</button>
+    </form>
+    <div id="results" class="results-section"></div>
+  </div>
+  <script>
+    document.getElementById('skinQuiz').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const skinType = document.getElementById('skinType').value;
+      const skinConcern = document.getElementById('skinConcern').value;const recommendations = {
+    "Oily": {
+      "Acne": {
+        cleanser: ["Himalaya Neem Face Wash", "https://www.nykaa.com/himalaya-neem-face-wash/p/12345"],
+        toner: ["Biotique Cucumber Toner", "https://www.nykaa.com/biotique-cucumber-toner/p/23456"],
+        moisturizer: ["Pond's Super Light Gel", "https://www.nykaa.com/ponds-super-light-gel/p/34567"],
+        serum: ["Good Vibes Tea Tree Serum", "https://www.nykaa.com/good-vibes-tea-tree-serum/p/45678"],
+        sunscreen: ["Lakme Sun Expert SPF 24", "https://www.nykaa.com/lakme-sun-expert-spf24/p/56789"],
+        lipBalm: ["Nivea Strawberry Lip Balm", "https://www.nykaa.com/nivea-strawberry-lip-balm/p/67890"]
+      }
+    },
+    "Dry": {
+      "Dullness": {
+        cleanser: ["Cetaphil Gentle Skin Cleanser", "https://www.nykaa.com/cetaphil-cleanser/p/9999"],
+        toner: ["Plum Chamomile Toner", "https://www.nykaa.com/plum-toner/p/8888"],
+        moisturizer: ["Nivea Soft Cream", "https://www.nykaa.com/nivea-soft/p/7777"],
+        serum: ["Minimalist Vitamin E Serum", "https://www.nykaa.com/minimalist-vitamin-e/p/6666"],
+        sunscreen: ["Aqualogica Radiance Dewy Sunscreen", "https://www.nykaa.com/aqualogica-sunscreen/p/5555"],
+        lipBalm: ["Himalaya Lip Balm", "https://www.nykaa.com/himalaya-lip-balm/p/4444"]
+      }
+    },
+    "Sensitive": {
+      "Redness": {
+        cleanser: ["Simple Kind to Skin Refreshing Face Wash", "https://www.nykaa.com/simple-refreshing-wash/p/12121"],
+        toner: ["Plum Chamomile & White Tea Toner", "https://www.nykaa.com/plum-chamomile-toner/p/12222"],
+        moisturizer: ["Simple Hydrating Light Moisturiser", "https://www.nykaa.com/simple-hydrating-moisturiser/p/12333"],
+        serum: ["The Moms Co. Natural Vita-Rich Face Serum", "https://www.nykaa.com/momsco-vitamin-serum/p/12444"],
+        sunscreen: ["RE' EQUIL Oxybenzone Free Sunscreen SPF 50", "https://www.nykaa.com/re-equil-sunscreen/p/12555"],
+        lipBalm: ["Organic Harvest Strawberry Lip Balm", "https://www.nykaa.com/organic-harvest-lip-balm/p/12666"]
+      }
+    },
+    "Combination": {
+      "Dark Spots": {
+        cleanser: ["Clean & Clear Foaming Face Wash", "https://www.nykaa.com/clean-and-clear-face-wash/p/13131"],
+        toner: ["Good Vibes Rose Glow Toner", "https://www.nykaa.com/good-vibes-rose-toner/p/13232"],
+        moisturizer: ["Lakme Peach Milk Moisturizer", "https://www.nykaa.com/lakme-peach-milk/p/13333"],
+        serum: ["Biotique Bio Dandelion Serum", "https://www.nykaa.com/biotique-dandelion-serum/p/13444"],
+        sunscreen: ["Lotus Herbals Safe Sun SPF 30", "https://www.nykaa.com/lotus-safe-sun/p/13555"],
+        lipBalm: ["Maybelline Baby Lips Pink Lolita", "https://www.nykaa.com/maybelline-babylips/p/13666"]
+      }
+    },
+    "Normal": {
+      "Aging": {
+        cleanser: ["Mamaearth Ubtan Face Wash", "https://www.nykaa.com/mamaearth-ubtan-face-wash/p/14141"],
+        toner: ["Khadi Natural Rose Water Toner", "https://www.nykaa.com/khadi-natural-toner/p/14242"],
+        moisturizer: ["Joy Revivify Moisturizer", "https://www.nykaa.com/joy-revivify/p/14343"],
+        serum: ["Good Vibes Argan Facial Oil", "https://www.nykaa.com/good-vibes-argan-oil/p/14444"],
+        sunscreen: ["VLCC Matte Look SPF 30", "https://www.nykaa.com/vlcc-sunscreen/p/14545"],
+        lipBalm: ["Elle 18 Juicy Lip Balm", "https://www.nykaa.com/elle18-lip-balm/p/14646"]
+      }
+    }
+  };
 
-    <script>
-        // Handle the form submission
-        document.getElementById("quiz-form").addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent page reload on submit
+  const routine = recommendations[skinType]?.[skinConcern];
+  const resultsDiv = document.getElementById('results');
 
-            const skinType = document.querySelector('input[name="skin-type"]:checked').value;
-            const resultText = document.getElementById("result-text");
-            const productRecommendations = document.getElementById("product-recommendations");
+  if (!routine) {
+    resultsDiv.innerHTML = `<p>Oops! That combination isn't available yet. We're working on it!</p>`;
+    return;
+  }
 
-            // Show result and product recommendations based on the skin type
-            let resultMessage = "";
-            let products = "";
+  let resultHTML = `<h2>Your Personalized Skincare Routine</h2><ul>`;
+  for (let step in routine) {
+    resultHTML += `<li><strong>${step.charAt(0).toUpperCase() + step.slice(1)}:</strong> <a href="${routine[step][1]}" target="_blank">${routine[step][0]}</a></li>`;
+  }
+  resultHTML += `</ul>`;
+  resultsDiv.innerHTML = resultHTML;
+});
 
-            if (skinType === "oily") {
-                resultMessage = "You have oily skin! Try using oil-free moisturizers and mattifying products.";
-                products = `
-                    <ul>
-                        <li><a href="https://www.nykaa.com/nykaa-skin-omega-oil-free-moisturizer">Nykaa Omega Oil-Free Moisturizer</a></li>
-                        <li><a href="https://www.nykaa.com/clinique-oily-skin-set">Clinique Oily Skin Set</a></li>
-                        <li><a href="https://www.nykaa.com/lancome-mattifying-cream">Lancôme Mattifying Cream</a></li>
-                    </ul>
-                `;
-            } else if (skinType === "dry") {
-                resultMessage = "You have dry skin! Hydrate with moisturizing creams and oils.";
-                products = `
-                    <ul>
-                        <li><a href="https://www.nykaa.com/biotique-bio-wheatgerm-cream">Biotique Wheatgerm Cream</a></li>
-                        <li><a href="https://www.nykaa.com/clinique-moisture-surge">Clinique Moisture Surge</a></li>
-                        <li><a href="https://www.nykaa.com/lush-breath-of-fresh-air">Lush Breath of Fresh Air Toner</a></li>
-                    </ul>
-                `;
-            } else if (skinType === "combination") {
-                resultMessage = "You have combination skin! Balance with a mix of moisturizing and mattifying products.";
-                products = `
-                    <ul>
-                        <li><a href="https://www.nykaa.com/mamart-himalaya-refresh-toner">Mamaearth Refresh Toner</a></li>
-                        <li><a href="https://www.nykaa.com/the-body-shop-tea-tree-oil">The Body Shop Tea Tree Oil</a></li>
-                        <li><a href="https://www.nykaa.com/nivea-soft-cream">Nivea Soft Cream</a></li>
-                    </ul>
-                `;
-            } else if (skinType === "sensitive") {
-                resultMessage = "You have sensitive skin! Look for gentle, fragrance-free products.";
-                products = `
-                    <ul>
-                        <li><a href="https://www.nykaa.com/cerave-hydrating-cleanser">CeraVe Hydrating Cleanser</a></li>
-                        <li><a href="https://www.nykaa.com/aqualogica-skin-dewy-sunscreen">Aqualogica Skin Dewy Sunscreen</a></li>
-                        <li><a href="https://www.nykaa.com/avene-cicalfate-cream">Avène Cicalfate Restorative Cream</a></li>
-                    </ul>
-                `;
-            }
-
-            // Show the result and hide the quiz
-            document.getElementById("result-section").style.display = "block";
-            document.getElementById("quiz-form").style.display = "none";
-            resultText.textContent = resultMessage;
-            productRecommendations.innerHTML = products; // Display product links
-        });
-
-        // Retake the quiz
-        function retakeQuiz() {
-            document.getElementById("quiz-form").style.display = "block";
-            document.getElementById("result-section").style.display = "
+  </script>
+</body>
+</html>
