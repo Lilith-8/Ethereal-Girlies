@@ -1,33 +1,32 @@
-function showResult() {
-    let total = answers.reduce((sum, val) => sum + val, 0);
-    let result = "";
-    let tips = "";
-    let productLink = "";
+// Handle the form submission
+document.getElementById("quiz-form").addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent page reload on submit
 
-    if (total <= 2) {
-        result = "Dry Skin";
-        tips = "Use a gentle, hydrating cleanser. Apply a rich moisturizer and avoid harsh exfoliants.";
-        productLink = "https://www.nykaa.com/some-dry-skin-product";  // Replace with actual affiliate link
-    } else if (total <= 4) {
-        result = "Normal Skin";
-        tips = "Keep your routine simple. Use a light moisturizer with SPF and a gentle cleanser.";
-        productLink = "https://www.nykaa.com/some-normal-skin-product";  // Replace with actual affiliate link
-    } else if (total <= 6) {
-        result = "Combination Skin";
-        tips = "Use a balanced cleanser and moisturizer. Target dry areas with a richer cream.";
-        productLink = "https://www.nykaa.com/some-combination-skin-product";  // Replace with actual affiliate link
-    } else {
-        result = "Oily Skin";
-        tips = "Use a gel-based, oil-free cleanser. Opt for non-comedogenic products to avoid clogged pores.";
-        productLink = "https://www.nykaa.com/some-oily-skin-product";  // Replace with actual affiliate link
-    }
+  const skinType = document.querySelector('input[name="skin-type"]:checked').value;
+  const resultText = document.getElementById("result-text");
 
-    quizContainer.innerHTML = `
-        <h2>Your Skin Type is: ${result}</h2>
-        <p>Skincare Tips for ${result}:</p>
-        <ul>
-            <li>${tips}</li>
-        </ul>
-        <p>Explore products for your skin type here: <a href="${productLink}" target="_blank">Shop Now</a></p>
-    `;
+  // Show result based on the skin type
+  let resultMessage = "";
+  if (skinType === "oily") {
+    resultMessage = "You have oily skin! Try using oil-free moisturizers and mattifying products.";
+  } else if (skinType === "dry") {
+    resultMessage = "You have dry skin! Hydrate with moisturizing creams and oils.";
+  } else if (skinType === "combination") {
+    resultMessage = "You have combination skin! Balance with a mix of moisturizing and mattifying products.";
+  } else if (skinType === "sensitive") {
+    resultMessage = "You have sensitive skin! Look for gentle, fragrance-free products.";
+  }
+
+  // Show the result and hide the quiz
+  document.getElementById("result-section").style.display = "block";
+  document.getElementById("quiz-form").style.display = "none";
+  resultText.textContent = resultMessage;
+});
+
+// Retake the quiz
+function retakeQuiz() {
+  document.getElementById("quiz-form").style.display = "block";
+  document.getElementById("result-section").style.display = "none";
+  document.getElementById("quiz-form").reset(); // Reset form selection
 }
+    
