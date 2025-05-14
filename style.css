@@ -1,132 +1,74 @@
-/* General Body Styles */
+/* Body styling */
 body {
-    background-color: #fce0e6; /* Light pastel pink background */
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    color: #7a3d73; /* Darker pinkish color for text */
+    background-color: #f8d8d8; /* Pastel pink */
+    font-family: 'Arial', sans-serif;
+    color: #333;
     margin: 0;
     padding: 0;
-    background-image: url('https://example.com/glitter-background.png'); /* Add a glittery background image */
-    background-size: cover;
 }
 
-/* Header Styling */
-header {
-    background-color: #ffb6c1; /* Soft pastel pink header */
-    padding: 30px;
+/* Headings styling */
+h1, h2 {
+    font-family: 'Dancing Script', cursive;
+    color: #d6a1d1; /* Pastel lilac */
     text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    color: white;
-    border-bottom: 5px solid #ff1493; /* Deep pink border */
-    position: relative;
 }
 
-header::before {
-    content: '💖'; /* Glitter hearts before header */
-    font-size: 50px;
-    position: absolute;
-    left: 50%;
-    top: -30px;
-    transform: translateX(-50%);
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
 }
 
-/* Button Styling */
+/* Input options styling */
+label {
+    font-size: 18px;
+    color: #f7a7b5; /* Soft pink */
+    margin-bottom: 10px;
+}
+
+/* Button styling */
 button {
-    background-color: #ff69b4; /* Bright pink */
+    background-color: #d6a1d1; /* Pastel lilac */
     color: white;
-    padding: 15px 30px;
-    font-size: 18px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 6px rgba(255, 105, 180, 0.6); /* Light shadow for sparkle effect */
-    background-image: url('https://example.com/glitter-heart.png'); /* Glitter heart background for buttons */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 30px;
 }
 
-/* Button Hover Effect */
 button:hover {
-    background-color: #ff1493; /* Deep pink */
-    box-shadow: 0 4px 8px rgba(255, 20, 147, 0.8);
+    background-color: #f7a7b5; /* Soft pink on hover */
 }
 
-/* Input Fields */
-input[type="text"], input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 2px solid #ffb6c1; /* Soft pink border */
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: #fff5f8; /* Light pink background for inputs */
+/* Results section */
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
 }
 
-/* Result Box Styling */
-.result {
-    background-color: #fff0f5; /* Soft pink result box */
-    padding: 20px;
-    text-align: center;
-    border-radius: 15px;
-    margin-top: 20px;
-    font-size: 18px;
-    color: #ff1493; /* Hot pink */
-    border: 2px dashed #ffb6c1; /* Dashed border for cute effect */
+.results h3 {
+    color: #d6a1d1;
 }
 
-/* Glitter Heart Animations (add this for fun) */
-@keyframes glitterHeart {
-    0% {
-        transform: scale(1);
-        opacity: 0.5;
-    }
-    50% {
-        transform: scale(1.1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 0.5;
-    }
+.results ul {
+    list-style: none;
+    padding: 0;
 }
 
-.glitter-heart {
-    font-size: 50px;
-    animation: glitterHeart 1.5s infinite;
-    color: #ff1493;
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+.results ul li {
+    margin-bottom: 15px;
 }
 
-/* Footer Styling */
-footer {
-    background-color: #ffb6c1; /* Soft pastel pink footer */
-    padding: 20px;
-    text-align: center;
-    font-size: 14px;
-    color: #fff;
-    position: relative;
+.results ul li a {
+    color: #333;
+    text-decoration: none;
 }
 
-/* Add glitter effect to footer */
-footer::after {
-    content: '✨';
-    font-size: 30px;
-    animation: glitterHeart 2s infinite;
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Add Starry Background */
-.star-background {
-    background-image: url('https://example.com/starry-background.png'); /* Add a starry background */
-    background-repeat: repeat;
-    background-position: center;
-    background-size: 50px;
+.results ul li a:hover {
+    text-decoration: underline;
 }
