@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GlowMuse AI - Your magical skincare and beauty advisor">
+    <title>GlowMuse AI</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fce4ec;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .chatbox {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 350px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #f06292;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8bbd0;
+            border-radius: 5px;
+        }
+        .bot-message {
+            background-color: #e1bee7;
+        }
+        .input-area {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        input[type="text"] {
+            width: 75%;
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #f06292;
+        }
+        button {
+            padding: 10px;
+            background-color: #f06292;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ec407a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chatbox">
+    <h1>GlowMuse AI</h1>
+    <div id="messages">
+        <div class="message bot-message">Hey sweetie! I’m GlowMuse, your soft skincare bestie. Ask me anything glow-up related!</div>
+    </div>
+    <div class="input-area">
+        <input type="text" id="user-input" placeholder="Type your skin concern...">
+        <button onclick="getAdvice()">Send</button>
+    </div>
+</div>
+
+<script>
+    const messagesContainer = document.getElementById("messages");
+
+    function getAdvice() {
+        const userInput = document.getElementById("user-input").value;
+        if (userInput.trim() === "") return;
+
+        const userMessage = document.createElement("div");
+        userMessage.classList.add("message");
+        userMessage.textContent = userInput;
+        messagesContainer.appendChild(userMessage);
+
+        const botMessage = document.createElement("div");
+        botMessage.classList.add("message");
+        botMessage.classList.add("bot-message");
+
+        const lowerInput = userInput.toLowerCase();
+
+        if (lowerInput.includes("dry skin")) {
+            botMessage.textContent = "Glow tip: Use raw honey as a mask, follow with rose water and almond oil. Drink coconut water too!";
+        } else if (lowerInput.includes("acne")) {
+            botMessage.textContent = "Babe, dab raw turmeric paste or aloe vera gel. Witch hazel is also a must-have for clear skin.";
+        } else if (lowerInput.includes("oily skin")) {
+            botMessage.textContent = "Try a multani mitti mask weekly and rose water mist daily. Use gel-based moisturizers only!";
+        } else if (lowerInput.includes("glow")) {
+            botMessage.textContent = "Glow recipe: Mix sandalwood powder with rosewater. Apply for 15 mins. Instant radiance, angel!";
+        } else if (lowerInput.includes("anti-aging")) {
+            botMessage.textContent = "Use raw milk + honey for natural collagen boost. Add retinol at night and green tea ice cubes daily!";
+        } else {
+            botMessage.textContent = "Hmm, could you ask me about a skin type or concern like acne, dryness, glow-up, or anti-aging, sweetie?";
+        }
+
+        messagesContainer.appendChild(botMessage);
+        document.getElementById("user-input").value = "";
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
