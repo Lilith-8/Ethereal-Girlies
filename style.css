@@ -1,36 +1,44 @@
 body {
-    font-family: 'Comic Sans MS', cursive;
-    background-color: #fff0f5;
-    color: #333;
-    padding: 20px;
-    margin: 0;
-}
-
-header {
-    text-align: center;
-    background-color: #ffc0cb;
-    padding: 20px;
-    border-radius: 10px;
+  background: linear-gradient(to right, #ffe0f0, #f9d6ff);
+  font-family: 'Poppins', sans-serif;
+  color: #4a0033;
+  padding: 20px;
+  text-align: center;
 }
 
 h1 {
-    color: #b03060;
+  font-size: 2.5em;
+  color: #c2185b;
+  margin-bottom: 30px;
 }
 
-p {
-    font-size: 18px;
+button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 24px;
+  font-size: 1em;
+  margin: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
 }
 
-#quiz {
-    background-color: #ffe4e1;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 15px;
-    max-width: 500px;
+button:hover {
+  background-color: #ff85c1;
+  transform: scale(1.05);
 }
 
-footer {
-    text-align: center;
-    margin-top: 40px;
-    font-style: italic;
+input[type="radio"] {
+  accent-color: #ff69b4;
+}
+
+.quiz-section {
+  background: #fff8fb;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: auto;
 }
