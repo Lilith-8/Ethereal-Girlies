@@ -1,0 +1,36 @@
+body {
+    font-family: 'Comic Sans MS', cursive;
+    background-color: #fff0f5;
+    color: #333;
+    padding: 20px;
+    margin: 0;
+}
+
+header {
+    text-align: center;
+    background-color: #ffc0cb;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h1 {
+    color: #b03060;
+}
+
+p {
+    font-size: 18px;
+}
+
+#quiz {
+    background-color: #ffe4e1;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 15px;
+    max-width: 500px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-style: italic;
+}
