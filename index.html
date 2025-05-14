@@ -1,58 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ethereal Girlies - Skincare Quiz</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethereal Girlies - Skincare Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #800040;
+        }
+        .quiz-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .quiz-form label {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .quiz-form input {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        .quiz-form button {
+            background-color: #800040;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        #result-section {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+        }
+        #result-section p {
+            font-size: 1.2em;
+            color: #800040;
+        }
+        #product-recommendations {
+            font-size: 1.1em;
+            color: #800040;
+            margin-top: 20px;
+        }
+        #product-recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+        #product-recommendations li {
+            margin-bottom: 10px;
+        }
+        #product-recommendations a {
+            color: #800040;
+            text-decoration: none;
+        }
+        #product-recommendations a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Skincare Quiz</h1>
+        
+        <div id="quiz-section">
+            <form id="quiz-form" class="quiz-form">
+                <label>
+                    <input type="radio" name="skin-type" value="oily" required> Oily
+                </label>
+                <label>
+                    <input type="radio" name="skin-type" value="dry"> Dry
+                </label>
+                <label>
+                    <input type="radio" name="skin-type" value="combination"> Combination
+                </label>
+                <label>
+                    <input type="radio" name="skin-type" value="sensitive"> Sensitive
+                </label>
+                <button type="submit">Get Results</button>
+            </form>
+        </div>
+        
+        <div id="result-section">
+            <p id="result-text"></p>
+            <div id="product-recommendations">
+                <!-- Product links will be dynamically added here -->
+            </div>
+            <button onclick="retakeQuiz()">Retake Quiz</button>
+        </div>
+    </div>
 
-  <section class="quiz-section">
-    <h1>Welcome to Your Magical Skincare Quiz!</h1>
-    <p style="font-size: 1.1em; color: #800040;">
-      Find out your skin type and get dreamy skincare recommendations—made just for you.  
-      Ready to glow, gorgeous?
-    </p>
-  </section>
+    <script>
+        // Handle the form submission
+        document.getElementById("quiz-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent page reload on submit
 
-  <section class="quiz-section">
-    <h2>What's your skin type?</h2>
-    <form id="quiz-form">
-      <div>
-        <label>
-          <input type="radio" name="skin-type" value="oily" required>
-          Oily
-        </label>
-      </div>
-      <div>
-        <label>
-          <input type="radio" name="skin-type" value="dry" required>
-          Dry
-        </label>
-      </div>
-      <div>
-        <label>
-          <input type="radio" name="skin-type" value="combination" required>
-          Combination
-        </label>
-      </div>
-      <div>
-        <label>
-          <input type="radio" name="skin-type" value="sensitive" required>
-          Sensitive
-        </label>
-      </div>
-      <button type="submit">Get My Results</button>
-    </form>
-  </section>
+            const skinType = document.querySelector('input[name="skin-type"]:checked').value;
+            const resultText = document.getElementById("result-text");
+            const productRecommendations = document.getElementById("product-recommendations");
 
-  <section id="result-section" style="display:none;">
-    <h2>Your Skin Type:</h2>
-    <p id="result-text"></p>
-    <button id="retake-button" onclick="retakeQuiz()">Retake Quiz</button>
-  </section>
+            // Show result and product recommendations based on the skin type
+            let resultMessage = "";
+            let products = "";
 
-  <script src="script.js"></script>
+            if (skinType === "oily") {
+                resultMessage = "You have oily skin! Try using oil-free moisturizers and mattifying products.";
+                products = `
+                    <ul>
+                        <li><a href="https://www.nykaa.com/nykaa-skin-omega-oil-free-moisturizer">Nykaa Omega Oil-Free Moisturizer</a></li>
+                        <li><a href="https://www.nykaa.com/clinique-oily-skin-set">Clinique Oily Skin Set</a></li>
+                        <li><a href="https://www.nykaa.com/lancome-mattifying-cream">Lancôme Mattifying Cream</a></li>
+                    </ul>
+                `;
+            } else if (skinType === "dry") {
+                resultMessage = "You have dry skin! Hydrate with moisturizing creams and oils.";
+                products = `
+                    <ul>
+                        <li><a href="https://www.nykaa.com/biotique-bio-wheatgerm-cream">Biotique Wheatgerm Cream</a></li>
+                        <li><a href="https://www.nykaa.com/clinique-moisture-surge">Clinique Moisture Surge</a></li>
+                        <li><a href="https://www.nykaa.com/lush-breath-of-fresh-air">Lush Breath of Fresh Air Toner</a></li>
+                    </ul>
+                `;
+            } else if (skinType === "combination") {
+                resultMessage = "You have combination skin! Balance with a mix of moisturizing and mattifying products.";
+                products = `
+                    <ul>
+                        <li><a href="https://www.nykaa.com/mamart-himalaya-refresh-toner">Mamaearth Refresh Toner</a></li>
+                        <li><a href="https://www.nykaa.com/the-body-shop-tea-tree-oil">The Body Shop Tea Tree Oil</a></li>
+                        <li><a href="https://www.nykaa.com/nivea-soft-cream">Nivea Soft Cream</a></li>
+                    </ul>
+                `;
+            } else if (skinType === "sensitive") {
+                resultMessage = "You have sensitive skin! Look for gentle, fragrance-free products.";
+                products = `
+                    <ul>
+                        <li><a href="https://www.nykaa.com/cerave-hydrating-cleanser">CeraVe Hydrating Cleanser</a></li>
+                        <li><a href="https://www.nykaa.com/aqualogica-skin-dewy-sunscreen">Aqualogica Skin Dewy Sunscreen</a></li>
+                        <li><a href="https://www.nykaa.com/avene-cicalfate-cream">Avène Cicalfate Restorative Cream</a></li>
+                    </ul>
+                `;
+            }
+
+            // Show the result and hide the quiz
+            document.getElementById("result-section").style.display = "block";
+            document.getElementById("quiz-form").style.display = "none";
+            resultText.textContent = resultMessage;
+            productRecommendations.innerHTML = products; // Display product links
+        });
+
+        // Retake the quiz
+        function retakeQuiz() {
+            document.getElementById("quiz-form").style.display = "block";
+            document.getElementById("result-section").style.display = "none";
+            document.getElementById("quiz-form").reset(); // Reset form selection
+        }
+    </script>
 </body>
 </html>
